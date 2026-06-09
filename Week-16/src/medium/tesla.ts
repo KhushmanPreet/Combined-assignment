@@ -15,3 +15,28 @@
 // Example Output
 // "This is a 2020 Tesla Model S."
 
+interface Vehicle {
+    make: string;
+    model: string;
+    year: number;
+
+    getDetails(): string;
+}
+
+class Car implements Vehicle {
+    make: string;
+    model: string;
+    year: number;
+
+    constructor(mak:string, mod: string,yr: number) {
+        this.make = mak;
+        this.model = mod;
+        this.year = yr;
+    }
+
+    getDetails() {
+        return `This is a ${this.year} ${this.make} ${this.model}.`
+    }
+}
+
+export {Car}

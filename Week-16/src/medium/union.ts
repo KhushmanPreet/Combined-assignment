@@ -17,4 +17,30 @@
 
 // 78.53981633974483
 
+type Circle = {
+    radius: number;
+}
 
+type Rectangle = {
+    width: number;
+    height: number;
+
+}
+type Shape = Circle | Rectangle;
+   
+   
+
+function getArea(shape: Shape) {
+    if ("radius" in shape) {
+        return Math.PI * shape.radius * shape.radius;
+    }
+    else if ("width" in shape){
+        return shape.height * shape.width;
+    }
+    else {
+        throw new Error("");
+        
+    }
+}
+
+export {getArea, Shape}

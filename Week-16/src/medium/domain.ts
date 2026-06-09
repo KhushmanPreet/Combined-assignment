@@ -14,3 +14,22 @@
 // Example Output:
 // true
 
+interface User {
+    firstName: string;
+    lastName: string;
+    email: string;
+    age: number;
+}
+
+ function isAllowedDomain(user: User, allowedDomain: string): boolean{
+    const userDomain = user.email.slice(user.email.indexOf('@'));
+
+    if (userDomain == allowedDomain) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export {User, isAllowedDomain}

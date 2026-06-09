@@ -12,3 +12,28 @@
 // Example Output:
 // "You have selected a window seat."
 
+enum SeatPosition {
+    Window = "window",
+    Middle = "middle",
+    Aisle = "aisle"
+}
+
+ function getSeatDescription(seat: SeatPosition) {
+    if (
+        seat !== SeatPosition.Window &&
+        seat !== SeatPosition.Middle &&
+        seat !== SeatPosition.Aisle 
+    )
+    {
+       throw new Error("Invalid seat position");
+       
+        
+    }
+    else {
+        return `You have selected an ${seat} seat.`
+    }
+
+}
+
+
+export {getSeatDescription, SeatPosition}
