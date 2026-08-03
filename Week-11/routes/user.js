@@ -95,4 +95,27 @@ router.put("/",authMiddleware , async (req, res) => {
     })
 })
 
+router.get("/bulk", async (req, res) => {
+    const filter = req.query.filter;
+
+    if (!filter) {
+        res.json({
+            users: []
+        })
+        return
+    }
+
+    const users = await userModel.find({
+        username: {
+            $regex: filter,
+            $options: "i"
+        }
+    }).select("-password -__v");
+
+    res.json({
+        users
+    })
+
+})
+
 module.exports = router;

@@ -26,7 +26,9 @@ export async function createTodo(
   title: string,
   description: string
 ) {
-  
+  const query = "INSERT INTO todos (user_id, title, description) VALUES ($1, $2, $3) RETURNING *";
+  const result = await client.query(query, [userId, title, description]);
+  return result.rows[0];
 }
 
 /*
@@ -42,7 +44,9 @@ export async function createTodo(
 
 
 export async function updateTodo(todoId: number) {
-  
+  const query = "UPDATE todos SET done = true WHERE id=$1 RETURNING *";
+  const result = await client.query(query, [todoId]);
+  return result.rows[0];
 }
 /*
  *  Get all the todos of a given user
@@ -56,5 +60,9 @@ export async function updateTodo(todoId: number) {
  */
 
 export async function getTodos(userId: number) {
- 
+  const query = "SELECT * FROM todos WHERE user_id=$1";
+  const values = [userId];
+  const result =await client.query(query, values);
+  return result.rows;
+
 }
